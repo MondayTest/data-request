@@ -1,0 +1,406 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures padding and border are included in element's total width and height */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Full height of the viewport */
+    display: flex; /* Use flexbox to ensure full height */
+    overflow: hidden; /* Prevent scrollbars */
+    background-color: #f0f0f0;
+}
+
+.unsupported-device-message {
+    display: none;
+    background-color: #ffdddd;
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin: auto;
+}
+
+body.unsupported-device .container {
+    display: none;
+}
+
+body.unsupported-device .unsupported-device-message {
+    display: block;
+}
+
+.container {
+    display: flex; /* Flexbox layout for the container */
+    height: 100%; /* Full height for the container */
+    width: 100%; /* Full width for the container */
+}
+
+.menu-panel {
+    width: 20%; /* Left panel width */
+    background-color: #00a8cc; /* Menu background color */
+    color: white;
+    padding: 20px;
+    overflow-y: auto; /* Add scroll if the content exceeds height */
+}
+
+.menu-panel h2 {
+    text-align: center;
+}
+
+.menu-panel ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-panel ul li {
+    margin: 15px 0;
+}
+
+.menu-panel a {
+    color: white;
+    text-decoration: none;
+    display: block; /* Make the entire area clickable */
+    padding: 10px; /* Add padding for better spacing */
+}
+
+.menu-panel a:hover {
+    background-color: #007ea7; /* Change background on hover */
+}
+
+.content-panel {
+width: 80%; /* Main content area width */
+padding: 20px;
+overflow-y: auto; /* Add scroll if the content exceeds height */
+}
+
+        .format-container {
+            margin-bottom: 20px;
+            background-color: #ffffff; /* Warna latar belakang untuk format */
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between; /* Mengatur tombol ke kiri dan kanan */
+            align-items: center;
+            margin-top: 10px; /* Ruang di atas button container */
+        }
+        .upload-label {
+            display: inline-block;
+            padding: 8px 12px; /* Ukuran tombol yang sama dengan tombol lainnya */
+            border: 2px solid #4caf50; /* Border tombol upload */
+            border-radius: 5px; /* Sudut tombol membulat */
+            background-color: #ffffff; /* Latar belakang dark mode */
+            color: #000000; /* Warna teks */
+            cursor: pointer; /* Mengubah cursor saat hover */
+            transition: background-color 0.3s; /* Transisi saat hover */
+            flex: 1; /* Membuat label mengisi ruang yang ada */
+            text-align: center; /* Mengatur teks di tengah */
+            margin-right: 10px; /* Ruang antara tombol upload dan tombol lainnya */
+        }
+        .upload-label:hover {
+            background-color: #4caf50; /* Warna tombol saat hover */
+        }
+        input[type="file"] {
+            display: none; /* Menyembunyikan input file asli */
+        }
+        textarea {
+            width: 100%;
+            resize: vertical; /* Mengizinkan hanya pengubahan ukuran vertikal */
+            height: 60px;
+            padding: 10px;
+            border: 2px solid #4caf50;
+            border-radius: 5px;
+            background-color: #ffffff; /* Latar belakang textarea di dark mode */
+            color: #000000; /* Teks textarea di dark mode */
+            transition: background-color 0.3s, color 0.3s, border 0.3s; /* Transisi untuk mode light/dark */
+            box-sizing: border-box; /* Memastikan padding tidak menambah lebar */
+        }
+        .data-item {
+            border: 1px solid #4caf50; /* Warna border item */
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px; /* Membuat sudut item membulat */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff; /* Warna latar belakang item di dark mode */
+            transition: background-color 0.3s, transform 0.2s; /* Animasi untuk perubahan warna dan efek hover */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Bayangan untuk item */
+			overflow: hidden; /* Sembunyikan konten yang melampaui */
+			text-overflow: ellipsis; /* Tambahkan ... untuk teks yang terpotong */
+			white-space: nowrap; /* Cegah teks untuk membungkus ke baris baru */
+        }
+        .data-item:hover {
+            transform: scale(1.02); /* Efek zoom saat hover */
+        }
+        .data-info {
+            flex-grow: 1;
+			margin-right: 10px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+            color: #000000; /* Warna teks untuk info di dark mode */
+        }
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+            margin-left: 10px;
+            border: 2px solid #000000; /* Border putih pada tombol */
+            border-radius: 5px; /* Sudut tombol membulat */
+            background-color: #ffffff; /* Warna tombol */
+            color: #000000; /* Warna teks tombol */
+            transition: background-color 0.3s, transform 0.2s; /* Transisi saat hover */
+            text-align: center; /* Mengatur teks di tengah */
+        }
+        button:hover {
+            background-color: #45a049; /* Warna tombol saat hover */
+            transform: scale(1.05); /* Efek zoom saat hover */
+        }
+        .data-item button {
+            padding: 8px 12px; /* Ukuran tetap untuk tombol Buka Data */
+        }
+        .clicked {
+            background-color: #4caf50; /* Warna hijau untuk baris yang diklik */
+            color: #ffffff; /* Warna teks di baris yang diklik */
+        }
+        .client-count {
+            margin: 10px 0;
+            font-weight: bold;
+            color: #4caf50; /* Warna teks untuk jumlah Client */
+        }
+        .mode-button, .format-button {
+            display: inline-block;
+            padding: 8px 12px; /* Ukuran tombol yang sama dengan tombol upload */
+            border: 2px solid #4caf50; /* Border tombol */
+            border-radius: 5px; /* Sudut tombol membulat */
+            background-color: #ffffff; /* Latar belakang dark mode */
+            color: #000000; /* Warna teks */
+            cursor: pointer; /* Mengubah cursor saat hover */
+            transition: background-color 0.3s; /* Transisi saat hover */
+            margin-left: 10px; /* Ruang antara tombol */
+        }
+        .mode-button, .user-manual {
+            display: inline-block;
+            padding: 8px 12px; /* Ukuran tombol yang sama dengan tombol upload */
+            border: 2px solid #4caf50; /* Border tombol */
+            border-radius: 5px; /* Sudut tombol membulat */
+            background-color: #ffffff; /* Latar belakang dark mode */
+            color: #000000; /* Warna teks */
+            cursor: pointer; /* Mengubah cursor saat hover */
+            transition: background-color 0.3s; /* Transisi saat hover */
+            margin-left: 10px; /* Ruang antara tombol */
+        }
+        .mode-button:hover, .format-button:hover {
+            background-color: #4caf50; /* Warna hijau saat hover */
+        }
+		.mode-button:hover, .user-manual:hover {
+            background-color: #4caf50; /* Warna hijau saat hover */
+        }
+		        /* Gaya untuk modal */
+        .modal {
+            display: none; /* Sembunyikan modal secara default */
+            position: fixed;
+            z-index: 1001; /* Pastikan modal di atas konten */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto; /* Aktifkan scroll jika diperlukan */
+            background-color: rgba(0, 0, 0, 0.8); /* Latar belakang semi-transparan */
+        }
+
+        .modal-content {
+            background-color: #ffffff; /* Warna latar belakang modal di dark mode */
+            margin: 15% auto; /* 15% dari atas dan tengah */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Lebar modal */
+            border-radius: 8px; /* Sudut membulat */
+            color: #000000; /* Warna teks */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+		.modal-content h2 {
+			margin-bottom: 15px; /* Jarak bawah untuk judul */
+		}
+		.modal-content p {
+			margin-bottom: 20px; /* Jarak bawah untuk paragraf */
+		}
+		.modal-content ul,
+		.modal-content ol {
+			margin-bottom: 20px; /* Jarak bawah untuk daftar */
+		}
+		.modal-content li {
+			margin-bottom: 10px; /* Jarak antar item dalam daftar */
+		}
+		.highlight-green {
+			color: #008000; /* Warna biru */
+			font-weight: bold; /* Menebalkan teks */
+		}
+		.highlight-red {
+			color: #FF0000; /* Warna merah */
+			font-weight: bold; /* Menebalkan teks */
+		}
+		.highlight-yellow {
+			color: #BF9B30; /* Warna kuning */
+			font-weight: bold; /* Menebalkan teks */
+		}
+		.filter-container {
+			margin: 20px 0;
+			display: flex;
+			align-items: center;
+		}
+		.filter-select {
+			margin-left: 10px;
+			padding: 8px;
+			border: 2px solid #4caf50; /* Border tombol */
+			border-radius: 5px; /* Sudut tombol membulat */
+			background-color: #ffffff; /* Latar belakang dark mode */
+			color: #000000; /* Warna teks */
+			transition: background-color 0.3s, color 0.3s, border 0.3s; /* Transisi untuk mode light/dark */
+		}
+		.filter-select:hover {
+			border-color: #45a049; /* Warna border saat hover */
+		}
+		    .responsive-img {
+            width: 100%; /* Memastikan gambar mengisi lebar kontainer */
+            height: auto; /* Menjaga rasio aspek gambar */
+        }
+		.nonresponsive-img {
+            width: auto;  
+            height: auto; 
+        }
+		/* Gaya untuk edit data*/
+		.modaledit {
+			display: none; /* Sembunyikan modal secara default */
+			position: fixed;
+			z-index: 1001; /* Pastikan modal di atas konten */
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			overflow: auto; /* Aktifkan scroll jika diperlukan */
+			background-color: rgba(0, 0, 0, 0.8); /* Latar belakang semi-transparan */
+		}
+
+		.modaledit-content {
+			background-color: #ffffff; /* Warna latar belakang modal di dark mode */
+			margin: 15% auto; /* 15% dari atas dan tengah */
+			padding: 20px;
+			border: 1px solid #888;
+			width: 80%; /* Lebar modal */
+			border-radius: 8px; /* Sudut membulat */
+			color: #000000; /* Warna teks */
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bayangan untuk efek kedalaman */
+		}
+
+		.close-edit {
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+
+		.close-edit:hover,
+			.close-edit:focus {
+			color: red;
+			text-decoration: none;
+			cursor: pointer;
+		}
+
+		/* Gaya untuk input grup */
+			.input-group {
+			margin-bottom: 15px;
+		}
+
+		.input-group label {
+			display: block;
+			margin-bottom: 5px;
+			}
+
+		.input-group input {
+			width: 98%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+
+		/* Gaya untuk tombol grup */
+		.button-group {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.button-group button {
+			padding: 10px 15px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		.button-group button:hover {
+			background-color: #555;
+			color: #ffffff;
+		}
+		
+		.highlight-red {
+    background-color: #ffcccc;
+    padding: 10px;
+    border: 1px solid #ff0000;
+    margin-bottom: 20px;
+}
+
+.warning-list {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.manual-list {
+    margin-left: 20px;
+}
+
+.highlight-yellow {
+    background-color: #ffffcc;
+    padding: 2px 4px;
+}
+
+.highlight-green {
+    background-color: #ccffcc;
+    padding: 2px 4px;
+}
+
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+
+.nonresponsive-img {
+    max-width: 100%; /* Adjust as needed for non-responsive images */
+    height: auto;
+    margin: 10px 0;
+}
+
+blockquote {
+    margin: 10px 0;
+    padding: 10px;
+    border-left: 5px solid #00a8cc;
+    background-color: #f9f9f9;
+}

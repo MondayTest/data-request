@@ -1,0 +1,177 @@
+:root {
+    --primary-color: #00a8cc;
+    --hover-color: #007ea7;
+    --error-color: #d8000c;
+    --background-color: #f0f0f0;
+    --text-color: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-color);
+}
+
+.unsupported-device-message {
+    display: none;
+    background-color: #ffdddd;
+    color: var(--error-color);
+    border: 1px solid var(--error-color);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    margin: auto;
+}
+
+body.unsupported-device .container {
+    display: none;
+}
+
+body.unsupported-device .unsupported-device-message {
+    display: block;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.left-panel {
+    position: relative; 
+    background-image: url('../image/background left.jpg');
+    background-size: cover; 
+    background-position: center; 
+    color: white;
+    padding: 60px; 
+    flex: 2; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.left-panel::after {
+    content: ""; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 1; 
+}
+
+.left-panel h1 {
+    position: relative; 
+    z-index: 2; 
+}
+
+.header {
+    position: relative; 
+    z-index: 2; 
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.8); 
+    padding: 10px;
+    border-radius: 8px;
+    color: black; 
+    margin-bottom: 20px; 
+}
+
+.right-panel {
+    background-color: #ffffff;
+    flex: 1; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-box h2 {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--hover-color);
+}
+
+.input-group input:focus,
+button:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.error-message {
+    color: var(--error-color);
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+#whatsapp-options {
+    margin-top: 20px;
+}
+
+.whatsapp-button {
+    margin: 10px 0; /* Margin between buttons */
+}
+
+/* Responsivitas */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-panel,
+    .right-panel {
+        width: 100%;
+        flex: none; 
+    }
+
+    .left-panel {
+        padding: 40px; 
+    }
+}

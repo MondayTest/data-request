@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Menu</title>
+    <link rel="stylesheet" href="../css/whatsapp desk.css">
+</head>
+<body>
+    <div class="unsupported-device-message">
+        <p>Halaman ini dimuat pada tampilan halaman yang tidak sesuai, harap perbesar tampilan halaman atau mengganti device anda ke laptop/komputer agar mendapatkan tampilan yang lebih besar.</p>
+    </div>
+    <div class="container">
+        <div class="menu-panel">
+            <h2>Taxerract Globe</h2>
+<ul>
+    <li><a id="dataRequestBtn10" href="#">Data Request</a></li>
+    <li><a id="userManualBtn10" href="#">User Manual</a></li>
+    <!-- Add more menu items here if needed -->
+</ul>
+        </div>
+        <div id="contentPanel" class="content-panel">
+		    <div class="content">
+        <div class="format-container">
+            <strong>Format Pesan:</strong><br>
+            <textarea id="messageFormat" placeholder="{1} untuk nama client, {2} untuk link datanya." rows="3"></textarea>
+        </div>
+        <div class="button-container">
+            <label class="upload-label" for="csvFile">Upload File CSV</label>
+            <input type="file" id="csvFile" accept=".csv" />
+            <button id="editFormat" class="format-button" style="display: none;">Ubah Format</button>
+            <button id="userManualBtn" style="display: none;"></button> <!-- Tambahkan ID untuk tombol -->
+			<button id="exportDataBtn" class="user-manual">Ekspor Data</button>
+            <select id="filterSelect" class="filter-select">
+				<option value="notSent">Belum Terkirim</option>
+                <option value="all">Semua</option>
+                <option value="sent">Sudah Terkirim</option>
+                <option value="noName">Tidak ada Nama</option>
+                <option value="noPhone">Tidak ada No.Telp</option>
+                <option value="noLink">Tidak ada Link Data</option>
+            </select>
+        </div>
+        <div class="client-count" id="clientCount"></div>
+        <div id="dataList"></div>
+    </div>
+	
+    <!-- Modal untuk User Manual -->
+	<div id="userManualModal" class="modal">
+		<div class="modal-content">
+			<span class="close">&times;</span>
+		</div>
+	</div>
+	
+		<div id="editModal" class="modaledit">
+			<div class="modaledit-content">
+				<span class="close-edit">&times;</span>
+				<h2>Edit Data Client</h2>
+				<div class="input-group">
+					<label for="editName">Nama Client:</label>
+					<input type="text" id="editName" placeholder="Masukkan Nama Client">
+				</div>
+				<div class="input-group">
+					<label for="editPhone">Nomor Telepon:</label>
+					<input type="text" id="editPhone" placeholder="Masukkan Nomor Telepon">
+				</div>
+				<div class="input-group">
+					<label for="editLink">Link Data:</label>
+					<input type="text" id="editLink" placeholder="Masukkan Link Data">
+				</div>
+				<div class="button-group">
+					<button id="saveChanges">Ganti Data</button>
+					<button id="cancelEdit">Cancel</button>
+				</div>
+			</div>
+		</div>
+		
+        </div>
+		<div id="userManualPanel10" class="content-panel" style="display: none;">
+    <div class="highlight-red">
+        <h2><strong>WARNING!!!</strong></h2>
+    </div>
+    <ul class="warning-list">
+        <li>File yang diterima hanya dalam format CSV. Format lain tidak akan diterima.</li>
+        <li>Data yang telah diimpor tidak akan tersimpan. Jika Anda menutup atau merefresh halaman ini, semua perubahan yang telah dilakukan akan hilang.</li>
+        <li>WhatsApp yang digunakan adalah WhatsApp Desktop.</li>
+    </ul>
+    
+    <h2>User Manual Data Request</h2>
+	<br>
+    <ol class="manual-list">
+        <li>
+            <h3><strong>Masukkan Format Pesan</strong></h3>
+            <img src="https://i.ibb.co.com/rHykYxX/Format-Pesan.png" alt="Deskripsi Gambar" class="responsive-img">
+            <p>Tulis format pesan yang diinginkan pada kolom "Format Pesan".</p>
+            <p>Gunakan:</p>
+			<br>
+            <ul>
+                <li><span class="highlight-yellow">{1}</span> untuk nama Client</li>
+                <li><span class="highlight-yellow">{2}</span> untuk link data request</li>
+            </ul>
+			<br>
+            <p>Contoh data yang ada pada CSV anda:</p>
+			<br>
+            <pre>[Nama Client, Nomor Telepon, Link Data]</pre>
+			<br>
+            <p>Hebert,62812xxxxxxx9,drive.google.com/hebert</p>
+			<br>
+            <p>Contoh format pesan yang dapat anda buat seperti ini:</p>
+            <blockquote class="highlight-green"><strong><em>Halo Pak/Bu {1},<br>Berikut kami lampirkan link data request 2024: {2}</em></strong></blockquote>
+            <p>Hasil yang akan terkirim:</p>
+            <blockquote class="highlight-green"><strong><em>Halo Pak/Bu Hebert,<br>Berikut kami lampirkan link data request 2024: drive.google.com/hebert</em></strong></blockquote>
+            <p>
+                <span class="highlight-yellow"><strong>Jika anda ingin mengubah format pesan setelah mengimport CSV, anda harus menekan tombol <span class="highlight-green">"ubah format"</span>.<br>Jika sudah selesai mengubah tekan tombol <span class="highlight-green">"selesai mengubah"</span>.</strong></span>
+            </p>
+        </li>
+		<br>
+        <li>
+            <h3><strong>Impor File CSV</strong></h3>
+            <img src="https://i.ibb.co.com/GMYc6ZC/Upload-file-CSV.png" alt="Deskripsi Gambar" class="responsive-img">
+            <p>Impor file CSV yang telah dibuat, format CSV yang diterima sebagai berikut:</p>
+			<br>
+            <pre>[Nama Client, Nomor Telepon, Link Data]</pre>
+			<br>
+            <p class="highlight-yellow"><strong>Pastikan memberikan 1 baris kosong antara header [Nama Client, Nomor Telepon, Link Data] dan data yang akan dimasukkan.<br>Data pertama dapat dimulai dari baris ke-3 (sistem tidak akan membaca data pada baris 1-2).</strong></p>
+			<br>
+            <p>Klik <strong><a href="https://drive.google.com/uc?export=download&id=1H36jVf0u0Zdfcf8TDnz8oTmSFmH0t5E-" download>UNDUH</a></strong> untuk mengunduh contoh format CSV.</p>
+        </li>
+		<br>
+        <li>
+            <h3><strong>Proses CSV</strong></h3>
+			<br>
+            <p>Setelah mengimpor CSV, sistem akan memproses file tersebut menjadi baris-baris.<br>Setiap barisnya terdiri dari Nama Client, Nomor Telepon Client, dan Tombol.</p>
+        </li>
+		<br>
+        <li>
+            <h3><strong>Kirim Pesan</strong></h3>
+            <img src="https://i.ibb.co.com/DrrmkFH/Kirim-pesan.png" alt="Deskripsi Gambar" class="nonresponsive-img">
+            <p>Setelah CSV berhasil diproses, tekan tombol <span class="highlight-green"><strong>"Kirim Pesan"</strong></span> pada baris Client yang ingin dikirimkan permintaan datanya.</p>
+        </li>
+		<br>
+        <li>
+            <h3><strong>Arahkan ke WhatsApp</strong></h3>
+			<br>
+            <ul>
+                <li>Setelah menekan tombol, Anda akan diarahkan ke api.whatsapp.com, dan kemudian secara otomatis diarahkan ke WhatsApp Desktop.</li>
+                <li>Pesan akan terisi otomatis dan siap untuk dikirim.</li>
+                <li>Jika pesan tidak terisi otomatis, kembali ke api.whatsapp.com yang sudah terbuka (pastikan nama Client sesuai).</li>
+                <li>Kemudian tekan tombol <span class="highlight-green">"Continue to Chat"</span> untuk diarahkan ke WhatsApp Desktop, di mana pesan akan terisi otomatis dan siap dikirim.</li>
+            </ul>
+            <img src="https://i.ibb.co.com/6DMZdSc/Continue-to-Chat.png" alt="Deskripsi Gambar" class="nonresponsive-img">
+            <p class="highlight-yellow"><strong>Jika pesan masih belum terisi otomatis, Anda dapat mengulangi langkah ini.</strong></p>
+        </li>
+    </ol>
+		</div>
+		
+    </div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+	<script src="../javascript/script desk.js"></script>
+</body>
+</html>
