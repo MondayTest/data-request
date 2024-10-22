@@ -1,11 +1,5 @@
 const mobileBreakpoint = 670;
 
-// Login Credentials (in encrypted form)
-const credentials = {
-    username: 'dGF4ZXJyYWN0IGdsb2Jl', // Base64 encoded: taxerract globe
-    password: 'YWRtaW4=' // Base64 encoded: admin
-};
-
 function setDeviceClass(isMobile) {
     if (isMobile) {
         document.body.classList.add('unsupported-device');
@@ -42,6 +36,11 @@ document.getElementById('login-form').addEventListener('submit', function(event)
         document.getElementById('error-message').classList.remove('hidden');
     }
 });
+
+const credentials = {
+    username: 'dGF4ZXJyYWN0IGdsb2Jl',
+    password: 'YWRtaW4='
+};
 
 // Handle WhatsApp button clicks
 document.getElementById('whatsapp-web').addEventListener('click', function() {
